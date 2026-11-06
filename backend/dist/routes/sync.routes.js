@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const sync_controller_js_1 = require("../controllers/sync.controller.js");
+const validate_middleware_js_1 = require("../middleware/validate.middleware.js");
+const sync_validator_js_1 = require("../validators/sync.validator.js");
+const router = (0, express_1.Router)();
+router.post('/batch', (0, validate_middleware_js_1.validate)(sync_validator_js_1.syncBatchSchema), sync_controller_js_1.SyncController.batchSync);
+router.get('/receipt/:idempotencyKey', sync_controller_js_1.SyncController.getReceipt);
+exports.default = router;

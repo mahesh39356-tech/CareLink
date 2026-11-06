@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CareLink Rural Health</string>
+    <string name="title_activity_main">CareLink Rural Health</string>
+    <string name="package_name">org.carelink.ruraltelemedicine</string>
+    <string name="custom_url_scheme">org.carelink.ruraltelemedicine</string>
+</resources>

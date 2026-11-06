@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const patient_controller_js_1 = require("../controllers/patient.controller.js");
+const validate_middleware_js_1 = require("../middleware/validate.middleware.js");
+const patient_validator_js_1 = require("../validators/patient.validator.js");
+const router = (0, express_1.Router)();
+router.get('/', (0, validate_middleware_js_1.validate)(patient_validator_js_1.searchPatientSchema), patient_controller_js_1.PatientController.searchPatients);
+router.get('/:id', patient_controller_js_1.PatientController.getPatientById);
+router.post('/', (0, validate_middleware_js_1.validate)(patient_validator_js_1.createPatientSchema), patient_controller_js_1.PatientController.createPatient);
+exports.default = router;

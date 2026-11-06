@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const consultation_controller_js_1 = require("../controllers/consultation.controller.js");
+const prescription_controller_js_1 = require("../controllers/prescription.controller.js");
+const media_controller_js_1 = require("../controllers/media.controller.js");
+const validate_middleware_js_1 = require("../middleware/validate.middleware.js");
+const consultation_validator_js_1 = require("../validators/consultation.validator.js");
+const router = (0, express_1.Router)();
+router.post('/', (0, validate_middleware_js_1.validate)(consultation_validator_js_1.requestConsultationSchema), consultation_controller_js_1.ConsultationController.requestConsultation);
+router.get('/cases', consultation_controller_js_1.ConsultationController.getDoctorCases);
+router.get('/:id', consultation_controller_js_1.ConsultationController.getConsultationDetail);
+router.get('/:id/files', media_controller_js_1.MediaController.getConsultationFiles);
+router.post('/prescribe', (0, validate_middleware_js_1.validate)(consultation_validator_js_1.prescribeSchema), consultation_controller_js_1.ConsultationController.prescribe);
+router.post('/:id/prescription', prescription_controller_js_1.PrescriptionController.createConsultationPrescription);
+exports.default = router;

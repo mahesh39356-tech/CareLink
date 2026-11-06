@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const vitals_controller_js_1 = require("../controllers/vitals.controller.js");
+const validate_middleware_js_1 = require("../middleware/validate.middleware.js");
+const vitals_validator_js_1 = require("../validators/vitals.validator.js");
+const router = (0, express_1.Router)();
+router.post('/', (0, validate_middleware_js_1.validate)(vitals_validator_js_1.createVitalSchema), vitals_controller_js_1.VitalsController.recordVitals);
+router.post('/symptoms', (0, validate_middleware_js_1.validate)(vitals_validator_js_1.createSymptomSchema), vitals_controller_js_1.VitalsController.recordSymptom);
+router.get('/patient/:patientId', vitals_controller_js_1.VitalsController.getVitalsByPatient);
+exports.default = router;
